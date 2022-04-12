@@ -37,4 +37,6 @@ Node* Node::setNextPtr(Node* newNextPtr)
 {
 	nextPtr = newNextPtr;
 }
+
+
 #endif
