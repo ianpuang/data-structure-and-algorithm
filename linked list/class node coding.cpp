@@ -3,13 +3,38 @@ using namespace std;
 
 struct node
 {
-	int data;
-	struct node* next;
+	int data; //list of integer data type
+	node* next; //store address of next node
 };
 
+struct node* head; //variable that will be pointer to node and store the address of first node in the linked list (head)
+
+void insert(int);
+void print();
 int main()
 {
-	return 0;
+	head = NULL; // means the list is empty
+	cout << "How many numbers?\n";
+	int number,input;
+	cin >> number;
+	
+	for(int i=0;i<number;i++)
+	{
+		cout << "Input a number: \n";
+		cin >> input;
+		insert(input);
+		print();
+	}
+}
+
+void insert(int number)
+{
+	
+}
+
+void print()
+{
+	
 }
 
 int listLength(struct node* head)
