@@ -8,7 +8,7 @@ struct node
 };
 
 struct node* head; //variable that will be pointer to node and store the address of first node in the linked list (head)
-
+node* newNode;
 void insert(int);
 void print();
 int main()
@@ -22,14 +22,17 @@ int main()
 	{
 		cout << "Input a number: \n";
 		cin >> input;
-		insert(input);
-		print();
+		//insert(input);
+		//print();
 	}
 }
 
 void insert(int number)
 {
-	
+	newNode = new node;
+	newNode->data = number;
+	newNode->next = head;
+	head->next=newNode;
 }
 
 void print()
