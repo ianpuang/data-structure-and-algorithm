@@ -8,7 +8,7 @@ struct node
 };
 
 struct node* head; //variable that will be pointer to node and store the address of first node in the linked list (head)
-node* newNode;
+node* newNode; //global variable (can be accessed anywhere)
 void insert(int);
 void print();
 int main()
