@@ -16,7 +16,10 @@ node *buildListBackward();
 void outputAll();
 void deleteNode(int);
 bool search(int);
-void insertNodeHead();
+void insertNodeHead(int);
+void insertNodeMiddle(int item);
+void insertNodeTail(int item);
+void deleteItem(int item);
 
 int main()
 {
@@ -27,6 +30,8 @@ int main()
 	int input;
 	cin >> input;
 	search(input);
+	deleteItem(input);
+	outputAll();
 }
 
 
@@ -93,10 +98,10 @@ void outputAll()
 {
 	node *current;
 	current = head;
-	
+	cout << endl;
 	while(current != NULL)
 	{
-		cout << current->data << " ";
+		cout <<  current->data << " ";
 		current = current->next;
 	}
 }
@@ -165,6 +170,60 @@ void insertNodeHead(int item)
 	}
 }
 
+void insertNodeMiddle(int item)
+{
+	newNode = new node;
+	node *bef, *aft;
+	//inserting the node
+	newNode->data = item;
+	aft->next = newNode->next;
+	bef->next=newNode;
+}
+
+void insertNodeTail(int item)
+{
+	newNode = new node;
+	
+	//inserting the node 
+	newNode->data = item;
+	newNode->next = NULL;
+	
+	if(head==NULL)
+	{
+		head=newNode;
+		last=newNode;
+		//count++;
+	}
+	else
+	{
+		last->next=newNode;
+		last = newNode;
+		//count++
+	}
+}
+
+void deleteItem(int item)
+{
+	node *current;
+	current=head;
+	current->data = item;
+//delete node with cases consideration
+	if(head==NULL)
+	{
+		cout << "\nCannot delete from an empty list.\n";
+	}
+	else
+	{
+		if(head->next==current)
+		{
+			head->next = current->next;
+		}
+		else
+		{
+			
+		}
+	}
+}
 /*
 insert node in between two pointer (*p and *q)
 newNode = new node;
