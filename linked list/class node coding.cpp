@@ -204,22 +204,57 @@ void insertNodeTail(int item)
 
 void deleteItem(int item)
 {
-	node *current;
-	current=head;
-	current->data = item;
+	node *current, *befCurrent; //pointer to current node and node before the current node
+	current=head; //set current value equal to head 
+	//current->data = item;
+	bool found;
 //delete node with cases consideration
-	if(head==NULL)
+	if(head==NULL)//if list is empty
 	{
 		cout << "\nCannot delete from an empty list.\n";
 	}
 	else
 	{
-		if(head->next==current)
+		if(head->data==item)//if  head data is equal to item
 		{
-			head->next = current->next;
+			//current = head; 
+			head = head->next; //head points to next node 
+			//count--;
+			
+			if(head==NULL) //list only has one node
+			{
+				last=NULL; //pointer last point to null
+				delete current; 
+			}
 		}
-		else
+		else //if item is not at head
 		{
+			found = false;  
+			befCurrent = head; //set befCurrent pointer to point to head
+			current=head->next; //current pointer points to next node
+		}
+		
+		while(current!=NULL && !found) //while item still not found and havent reached end of node
+		{
+			if(current->data != item) //if data in current pointer not equal to item
+			{
+				befCurrent = current; //befCurrent pointer point to current
+				current=current->next; //current pointer move to next node
+			}else
+			{
+				found = true; //node found
+			}
+		}
+		if(found) //if node is found
+		{
+			befCurrent->next=current->next;
+			//count--;
+			
+			if(last==current) //node to be deleted is the last node 
+			{
+				last = befCurrent; //node before the current node(node to be deleted) become the last node 
+				delete current; //delete the node
+			}
 			
 		}
 	}
