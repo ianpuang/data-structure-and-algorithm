@@ -7,48 +7,170 @@ struct node
 	node* next; //store address of next node
 };
 
-struct node* head; //variable that will be pointer to node and store the address of first node in the linked list (head)
-node* newNode; //global variable (can be accessed anywhere)
-void insert(int);
-void print();
+node* head; //variable that will be pointer to node and store the address of first node in the linked list (head)
+node *newNode, *last; //global variable (can be accessed anywhere)
+
+
+node *buildListForward();
+node *buildListBackward();
+void outputAll();
+void deleteNode(int);
+bool search(int);
+void insertNodeHead();
+
 int main()
 {
-	head = NULL; // means the list is empty
-	cout << "How many numbers?\n";
-	int number,input;
-	cin >> number;
+	buildListForward();
+	outputAll();
+	//buildListBackward();
+	cout << "\ninsert number\n";
+	int input;
+	cin >> input;
+	search(input);
+}
+
+
+node *buildListForward() //insert at the end
+{
+	node  *newNode, *last;
+	int num;
 	
-	for(int i=0;i<number;i++)
+	cout << "Enter numbers of integer. Enter -999 to exit input." << endl;
+	cin >> num;
+	head = NULL; 
+	
+	while(num != -999)
 	{
-		cout << "Input a number: \n";
-		cin >> input;
-		//insert(input);
-		//print();
+		newNode = new node; //create a new node
+		newNode -> data = num;  //assign number into data of the new node
+		newNode -> next = NULL; //newnode link points to null (become tail)
+	
+	if(head == NULL)  //if there's nothing in the list 
+	{
+		head = newNode; //make a new node and assign it as first item
+		last = newNode; //assign the new node as last item as well 
+	}
+	else //else if there is already a value in the first pointer
+	{
+		last -> next = newNode;  //make last item link to new node
+		last = newNode; //newNode become the last item 
+	}
+	cin >> num;
+	}//end while 
+	return head;
+}//end func
+
+node *buildListBackward() //insert at the beginning 
+{
+	node   *newNode;
+	int num;
+	
+	cout << "\nEnter list of integer. Enter -999 to exit input." << endl;
+	cin >> num;
+	head = NULL; //head points to null
+	
+	while(num != -999)
+	{
+		newNode = new node; //create a new node
+		newNode->data = num; //store data in new node
+		newNode->next = head; //put newNode at the beginning of the list 
+		
+		head = newNode; //head pointer points to newNode
+		/*
+		1. create new node
+		2. store data into new node
+		3. new node link to head
+		4. head points to new node
+		*/
+		cin >> num; //read next number
+	}
+	
+	return head; 
+
+}//end of buildListBackward
+
+void outputAll()
+{
+	node *current;
+	current = head;
+	
+	while(current != NULL)
+	{
+		cout << current->data << " ";
+		current = current->next;
 	}
 }
 
-void insert(int number)
+void deleteNode(int input)
 {
+	node *current, *p, *q;	
+	q=p->next;
+	p->next=q->next;
+	delete q;	
+
+}
+
+bool search(int item)
+{
+	// my try
+	node *current;
+	bool found=false;
+	current = head;
+	while(current!=NULL && !found)
+	{
+	if(current->data==item)
+	{
+		found = true;
+		cout << "Item found\n";
+		cout << current->data;
+	}
+	else
+	{
+		current = current->next;
+	}
+	}
+	return found;
+	
+	
+/*	node *current;
+	bool found = false;
+	current = head;
+
+	while(current!=NULL && !found)
+	{
+		if(current->data == item)
+		{
+			found = true;
+			cout << "number is found in the list";
+		}
+		else
+		{
+			current = current->next;
+		}
+	}
+	return found;*/
+}
+
+void insertNodeHead(int item)
+{
+	//my try
 	newNode = new node;
-	newNode->data = number;
+	newNode->data = item;
 	newNode->next = head;
-	head->next=newNode;
-}
-
-void print()
-{
+	head=newNode;
 	
-}
-
-int listLength(struct node* head)
-{
-	struct node *current = head;
-	int count = 0;
-	
-	while(current!=NULL)
+	if(last==NULL)
 	{
-		count++;
-		current = current -> next;
+		last = newNode;
 	}
-	return count;
 }
+
+/*
+insert node in between two pointer (*p and *q)
+newNode = new node;
+newNode->next = q;
+p->next=newNode;
+!order of statement does not matter
+*/
+
+
