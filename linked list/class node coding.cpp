@@ -16,10 +16,13 @@ node *buildListBackward();
 void outputAll();
 void deleteNode(int);
 bool search(int);
+bool searchOrderedList(int);
 void insertNodeHead(int);
 void insertNodeMiddle(int item);
 void insertNodeTail(int item);
+void insertItemOrdered(int);
 void deleteItem(int item);
+void deleteNodeOrdered(int);
 
 int main()
 {
@@ -259,12 +262,158 @@ void deleteItem(int item)
 		}
 	}
 }
-/*
-insert node in between two pointer (*p and *q)
-newNode = new node;
-newNode->next = q;
-p->next=newNode;
-!order of statement does not matter
-*/
+
+bool searchOrderedList(int item)
+{
+	node *current;
+	bool found = false;
+	current=head;
+	
+	while((!found && current!=NULL))
+{
+	if(current->data>=item)
+	{
+		found = true;
+		cout << "Item found\n";
+	}
+	else
+	{
+		current=current->next;
+	}
+	
+	if(found)
+	{
+		found = (current->data == item);
+	}
+	return found;
+}
+}
+
+void insertItemOrdered(int item)
+{
+	node *current , *trailCurrent; //this two pointer is for traversing the list
+	newNode = new node; //create node
+	newNode->data = item;
+	newNode->next=NULL;
+	bool found;
+	
+//case 1
+	if(head==NULL)
+	{
+		head = newNode;
+		last = newNode;
+		
+		while(current != NULL && !found)
+		{
+			if(current->data >= item)
+			{
+				found = true;
+			}
+			else
+			{
+				trailCurrent=current;
+				current=current->next;
+			}
+		}
+		/*
+		-my try- 
+		current->next=NULL;
+		head->next=current;
+		trailCurrent->next=current;
+		*/
+	}
+//case 2
+	else if(current==head)
+	{
+		newNode->next=head;
+		head=newNode;
+	}
+	else
+	{
+		trailCurrent->next=newNode;
+		newNode->next =current;
+		
+		if(current==NULL)
+		{
+			last = newNode;
+		}
+	}
+
+}
+
+void deleteNodeOrdered(int item)
+{
+	node *current, *trailCurrent;
+	newNode=new node;
+	newNode->data=item;
+	bool found;
+//case 1
+	if(head==NULL)
+	{
+		cout << "Cant delete item because the list is empty\n";
+	}
+	else
+{
+	current=head;
+	found=false;
+//case 2
+	if(current->data==item)	
+	{
+		current->next=head;
+	}
+//case 3
+	while(!found && current!=NULL)
+{
+	if(current->data>=item)
+	{
+		
+		//current=newNode;
+		//trailCurrent->next = current;
+		found = true;
+	}else
+	{
+		trailCurrent=current;
+		current=current->next;
+	}
+//case 4
+	if(current==NULL)
+	{
+		cout << "Item not in the list\n";
+	}else
+	{
+		if(current->data==item)
+		{
+			if(head==current)
+			{
+				head = head->next;
+				if(head==NULL)
+				{
+					last==NULL;
+					delete current;
+				}
+				else
+				{
+					trailCurrent->next=current->next;
+					if(current==last)
+					{
+						last=trailCurrent;
+						delete current;
+					}
+					//count--;
+				}
+				}else
+					cout << "item not in the list\n";
+				
+			}
+		}
+	}
+}
+
+
+	
+}
+
+
+
 
 
