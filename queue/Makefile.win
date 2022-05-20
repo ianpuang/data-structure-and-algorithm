@@ -1,15 +1,15 @@
-# Project: lab8q4
+# Project: queueArray
 # Makefile created by Dev-C++ 5.11
 
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = "../../TMF1434-LAB/LAB\ 8/LAB\ 8\ Q4.o"
-LINKOBJ  = "../../TMF1434-LAB/LAB 8/LAB 8 Q4.o"
+OBJ      = queueArray.o
+LINKOBJ  = queueArray.o
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
-BIN      = lab8q4.exe
+BIN      = queueArray.exe
 CXXFLAGS = $(CXXINCS) -g
 CFLAGS   = $(INCS) -g
 RM       = rm.exe -f
@@ -24,5 +24,5 @@ clean: clean-custom
 $(BIN): $(OBJ)
 	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
 
-"../../TMF1434-LAB/LAB\ 8/LAB\ 8\ Q4.o": ../../TMF1434-LAB/LAB\ 8/LAB\ 8\ Q4.cpp
-	$(CPP) -c "../../TMF1434-LAB/LAB 8/LAB 8 Q4.cpp" -o "../../TMF1434-LAB/LAB 8/LAB 8 Q4.o" $(CXXFLAGS)
+queueArray.o: queueArray.cpp
+	$(CPP) -c queueArray.cpp -o queueArray.o $(CXXFLAGS)
