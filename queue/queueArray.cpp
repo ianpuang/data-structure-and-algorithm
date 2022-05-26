@@ -16,6 +16,7 @@ void deleteQueue();
 void front();
 void back();
 
+
 //global variable
 node *newNode,*head,*current,*last,*queueFront,*queueRear;
 
